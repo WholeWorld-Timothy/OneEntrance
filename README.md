@@ -38,7 +38,7 @@
     b. Service层注解切面：需要查询StarRocks的逻辑，主动添加注解，切面在执行逻辑前利用HintManager注入数据源ID，选择StarRocks作为查询数据源。
 3. TiKV与StarRocks之间的同步采用Flink+Flink tidb connector与Flink starrocks connector。需要开发脚本，每日定时组织同步脚本，重新启动Flink cdc同步程序。
 
-诸如Spark程序开发等工作，属于按照需求的业务开发，不放入此次实现中。
+诸如Spark程序开发等工作，属于业务开发，不放入此次实现中。
 
 每次访问时，请求处理流程如下：
 ![image](https://user-images.githubusercontent.com/4351491/195276763-3b22f007-1155-49e5-b0d7-eb49f913b29b.png)
