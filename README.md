@@ -1,3 +1,5 @@
+【完整版本，可进入初赛评分】
+
 团队名称：大明湖畔的小天台
 
 作者：数据小黑、白菜帮帮主
@@ -13,7 +15,7 @@
 # 项目设计
 ## 项目背景
 我们团队曾经在[传统行业数据架构发展变化](https://tidb.net/blog/62fd595e)中提到过，我们现在数据中台的架构如下：
-![image](https://user-images.githubusercontent.com/4351491/195223809-461c2ae5-94ec-4b75-98b3-5c3bfcd35b3f.png)
+![image](https://user-images.githubusercontent.com/4351491/195276832-74ef5406-615a-4202-aa0d-29d105b2be23.png)
 
 从应用层看下层的数据源，有两个OLTP、一个OLAP、一个KV，共四个数据源，加上其他缓存、消息队列等中间件，配置文件长达100多行，维护和管理极其困难。
 
@@ -21,7 +23,7 @@
 
 ## 架构设计
 我们是一群“懒汉”，相信总有合适的开源工具可以使用。我们决定采用开源软件堆砌实现这个架构。架构图如下：
-![image](https://user-images.githubusercontent.com/4351491/195223827-96f69a6b-f2df-44f9-84f3-05f7e5050cb7.png)
+![image](https://user-images.githubusercontent.com/4351491/195276868-2a4acf5b-c3e1-4eca-a289-2166e9392b53.png)
 
 在架构设计中，拓展了ShardingSphere、StarRocks的使用，作为架构的补充。
 1. ShardingSphere作为统一入口存在，根据应用传入的Hint信息，切换查询到TiDB或者StarRocks上。
@@ -35,4 +37,9 @@
     a. Control层切面：数据操作层切面，使用HintManager注入默认值，默认选择TiDB作为数据库。
     b. Service层注解切面：需要查询StarRocks的逻辑，主动添加注解，切面在执行逻辑前利用HintManager注入数据源ID，选择StarRocks作为查询数据源。
 3. TiKV与StarRocks之间的同步采用Flink+Flink tidb connector与Flink starrocks connector。需要开发脚本，每日定时组织同步脚本，重新启动Flink cdc同步程序。
+
 诸如Spark程序开发等工作，属于按照需求的业务开发，不放入此次实现中。
+
+每次访问时，请求处理流程如下：
+![image](https://user-images.githubusercontent.com/4351491/195276763-3b22f007-1155-49e5-b0d7-eb49f913b29b.png)
+
