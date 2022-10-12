@@ -32,7 +32,7 @@
 为实现上述设计，需要有一定的开发，来简化整个搭建过程，目标是不需要做任何配置变更，一切都是自洽的、舒适的。整体研发工作作如下划分：
 1. ShardingSphere层采用Jar的方式放入每个应用，在应用启动时，自动读取TiDB、StarRocks的所有表注册到ShardingSphere的配置中。
 2. 实现两个切面：
-    a. Dao层切面：数据操作层切面，使用HintManager注入默认值，默认选择TiDB作为数据库。
-    b. 分析查询注解切面：需要查询StarRocks的逻辑，主动添加注解，切面在执行逻辑前利用HintManager注入数据源ID，选择StarRocks作为查询数据源。
+    a. Control层切面：数据操作层切面，使用HintManager注入默认值，默认选择TiDB作为数据库。
+    b. Service层注解切面：需要查询StarRocks的逻辑，主动添加注解，切面在执行逻辑前利用HintManager注入数据源ID，选择StarRocks作为查询数据源。
 3. TiKV与StarRocks之间的同步采用Flink+Flink tidb connector与Flink starrocks connector。需要开发脚本，每日定时组织同步脚本，重新启动Flink cdc同步程序。
 诸如Spark程序开发等工作，属于按照需求的业务开发，不放入此次实现中。
