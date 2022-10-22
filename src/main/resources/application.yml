@@ -4,13 +4,13 @@ spring:
       names: ds-0,ds-1
       ds_0:
         url: jdbc:mysql://127.0.0.1:3306/ds-0?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&useInformationSchema=false
-        driver-class-name: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
         username: root
         password: 123456a?
       ds_1:
         url: jdbc:mysql://127.0.0.1:3306/ds-1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&useInformationSchema=false
-        driver-class-name: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
         username: root
         password: 123456a?
@@ -18,7 +18,7 @@ spring:
       sharding:
         defaultDatabaseStrategy:
           hint:
-            algorithmClassName: com.shardingsphere.algorithm.AnnotationHintShardingAlgorithm
+            algorithmClassName: com.shardingsphere.algorithm.DefaultHintShardingAlgorithm
         props:
           sql:
             show: false
@@ -59,5 +59,5 @@ spring:
 #              executor.size: 4
 #              max.connections.size.per.query: 1
 #              check.table.metadata.enabled: false
-    props:
-      sql.show: true
+#    props:
+#      sql.show: true

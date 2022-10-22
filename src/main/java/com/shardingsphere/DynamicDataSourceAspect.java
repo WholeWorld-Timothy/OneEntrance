@@ -19,7 +19,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-
 @Aspect
 @Order(-10)
 @Component
@@ -54,7 +53,10 @@ public class DynamicDataSourceAspect {
     public void restoreDataSource(JoinPoint point) {
 
         //方法执行完毕之后，销毁当前数据源信息，进行垃圾回收。
-        HintManagerHolder.clear();
+        //HintManagerHolder.clear();
+
+        //清理ThreadLocal中的内容
+        HintManager.getInstance().close();
     }
 
 

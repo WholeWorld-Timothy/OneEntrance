@@ -6,8 +6,12 @@ import cn.hutool.json.JSONUtil;
 //import com.shardingsphere.Mapper.MessageMapper;
 import com.shardingsphere.Mapper.UserMapper;
 //import com.shardingsphere.entity.Message;
+import com.shardingsphere.algorithm.DefaultHintShardingAlgorithm;
 import com.shardingsphere.entity.User;
 //import com.shardingsphere.service.MessageService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.shardingsphere.api.hint.HintManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +28,7 @@ import java.util.List;
 @SpringBootTest
 public class DemoTest {
 
-
+    private static final Logger LOGGER = LogManager.getLogger(DemoTest.class);
     @Autowired
     private UserMapper userMapper;
 
@@ -42,7 +46,7 @@ public class DemoTest {
     @Test
     void contextLoads() {
         User user = new User();
-        user.setName("jiangkun");
+        user.setName("jiangkun11");
         int randomNum = (int) (Math.random() * 9000 + 1000);
         user.setAge(new Long(randomNum));
         user.setSex("1");
@@ -50,14 +54,22 @@ public class DemoTest {
         user.setCreationTime(new Date());
         user.setUpdateTime(new Date());
         //user.setId(1549220056852897794L);
+
+
+        System.out.println(HintManager.getDatabaseShardingValues());
+        LOGGER.error(HintManager.getDatabaseShardingValues());
+
+        HintManager.getInstance().setDatabaseShardingValue("ds-1");
         userMapper.insert(user);
 
-        //ds-0库
-        User user0 = userMapper.selectById("1583458708281049090");
-        System.err.println("ds-0库:" + JSONUtil.parseObj(user0));
-        //ds-1库
-        User user1 = userMapper.selectById("1583460007303147522");
-        System.err.println("ds-1库:" + JSONUtil.parseObj(user1));
+
+//
+//        //ds-0库
+//        User user0 = userMapper.selectById("1583458708281049090");
+//        System.err.println("ds-0库:" + JSONUtil.parseObj(user0));
+//        //ds-1库
+//        User user1 = userMapper.selectById("1583460007303147522");
+//        System.err.println("ds-1库:" + JSONUtil.parseObj(user1));
 
 
     }
