@@ -6,6 +6,8 @@
 
 项目进展：只有一篇RFC
 
+项目代码仓库的链接: https://github.com/WholeWorld-Timothy/OneEntrance
+
 # 项目介绍
 应用只需要保持一个数据源，即可使用OLTP、轻度OLAP、重度OLAP等类型的数据库服务。
 
