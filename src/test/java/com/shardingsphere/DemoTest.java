@@ -56,6 +56,8 @@ public class DemoTest {
         //user.setId(1549220056852897794L);
 
 
+
+
         System.out.println(HintManager.getDatabaseShardingValues());
         LOGGER.error(HintManager.getDatabaseShardingValues());
 
