@@ -1,0 +1,63 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: ds-0,ds-1
+      ds_0:
+        url: jdbc:mysql://127.0.0.1:3306/ds-0?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&useInformationSchema=false
+        driver-class-name: com.zaxxer.hikari.HikariDataSource
+        type: com.alibaba.druid.pool.DruidDataSource
+        username: root
+        password: 123456a?
+      ds_1:
+        url: jdbc:mysql://127.0.0.1:3306/ds-1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&useInformationSchema=false
+        driver-class-name: com.zaxxer.hikari.HikariDataSource
+        type: com.alibaba.druid.pool.DruidDataSource
+        username: root
+        password: 123456a?
+    config:
+      sharding:
+        defaultDatabaseStrategy:
+          hint:
+            algorithmClassName: com.shardingsphere.algorithm.AnnotationHintShardingAlgorithm
+        props:
+          sql:
+            show: false
+
+#    sharding:
+#      tables:
+#        user:
+#          actual-data-nodes: ds-$->{0..1}.user
+#          database-strategy:
+#            standard:
+#              sharding-column: age
+#              precise-algorithm-class-name: com.shardingsphere.algorithm.DefaultModuloPreciseShardingAlgorithm
+#          key-generator:
+#            column: id
+#            type: SNOWFLAKE
+#            props:
+#              worker.id: 11
+#              executor.size: 4
+#              max.connections.size.per.query: 1
+#              check.table.metadata.enabled: false
+
+
+#        message:
+#          actual-data-nodes: ds-$->{0..1}.message_$->{0..1}
+#          database-strategy:
+#            standard:
+#              sharding-column: contact_id
+#              precise-algorithm-class-name: com.shardingsphere.algorithm.DefaultModuloPreciseShardingAlgorithm
+#          table-strategy:
+#            standard:
+#              sharding-column: msg_id
+#              precise-algorithm-class-name: com.shardingsphere.algorithm.DefaultModuloPreciseShardingAlgorithm
+#          key-generator:
+#            column: msg_id
+#            type: SNOWFLAKE
+#            props:
+#              worker.id: 22
+#              executor.size: 4
+#              max.connections.size.per.query: 1
+#              check.table.metadata.enabled: false
+    props:
+      sql.show: true
