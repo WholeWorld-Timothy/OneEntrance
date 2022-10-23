@@ -2,8 +2,8 @@ package com.shardingsphere;
 public enum DataSourceType {
 
     DEFAULT("default", "default"),
-    DATASOURCE_1("ds-0", "ds-0"),
-    DATASOURCE_2("ds-0", "ds-1"),    ;
+    DATASOURCE_0("ds-0", "ds-0"),
+    DATASOURCE_1("ds-1", "ds-1"),    ;
 
     private String name;
 

@@ -2,26 +2,28 @@ spring:
   shardingsphere:
     datasource:
       names: ds-0,ds-1
-      ds_0:
+      ds-0:
         url: jdbc:mysql://127.0.0.1:3306/ds-0?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&useInformationSchema=false
         driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
         username: root
         password: 123456a?
-      ds_1:
+      ds-1:
         url: jdbc:mysql://127.0.0.1:3306/ds-1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&useInformationSchema=false
         driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
         username: root
         password: 123456a?
-    config:
-      sharding:
-        defaultDatabaseStrategy:
-          hint:
-            algorithmClassName: com.shardingsphere.algorithm.DefaultHintShardingAlgorithm
-        props:
-          sql:
-            show: false
+    sharding:
+      tables:
+        user:
+          actualDataNodes: ds-$->{0..1}.user
+          databaseStrategy:
+            hint:
+              algorithmClassName: com.shardingsphere.algorithm.CustomDBHintShardingAlgorithm
+      props:
+        sql:
+          show: true
 
 #    sharding:
 #      tables:

@@ -4,6 +4,7 @@ import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.json.JSONUtil;
 //import com.shardingsphere.Mapper.MessageMapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shardingsphere.Mapper.UserMapper;
 //import com.shardingsphere.entity.Message;
 import com.shardingsphere.algorithm.DefaultHintShardingAlgorithm;
@@ -40,6 +41,7 @@ public class DemoTest {
      * 测试user分库
      */
     @Test
+    //@TargetDataSource(value = DataSourceType.DATASOURCE_1)
     void contextLoads() {
         User user = new User();
         user.setName("jiangkun11");
@@ -51,15 +53,26 @@ public class DemoTest {
         user.setUpdateTime(new Date());
         //user.setId(1549220056852897794L);
 
+        HintManager.getInstance().addDatabaseShardingValue("user",1);
 
+        //如果与addDatabaseShardingValue同时打开会报错
+        //HintManager.getInstance().setDatabaseShardingValue(3);
 
-
-        System.out.println(HintManager.getDatabaseShardingValues());
         LOGGER.error(HintManager.getDatabaseShardingValues());
+        //userMapper.insert(user);
 
-        HintManager.getInstance().setDatabaseShardingValue("ds-1");
-        userMapper.insert(user);
+        //所查询数据在第一个库
+        User user0 = userMapper.selectOne(new QueryWrapper<User>().eq("id", "1583458708281049090"));
+        if(user0 != null) {
+            LOGGER.error("user0 = " + user0);
+        }
 
+
+        //所查询数据在第二个库
+        User user1 = userMapper.selectOne(new QueryWrapper<User>().eq("id", "1583617906281164801"));
+        if(user1 != null) {
+            LOGGER.error("user1 = " + user1);
+        }
 
 //
 //        //ds-0库
