@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c117462-10f1-43f1-8bf3-3bd1553699ef" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/shardingsphere/algorithm/CustomTableHintShardingAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/shardingsphere/DataSourceType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/shardingsphere/DataSourceType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/shardingsphere/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/shardingsphere/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/shardingsphere/DemoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/shardingsphere/DemoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +112,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666408445402</updated>
       <workItem from="1666408448624" duration="12529000" />
-      <workItem from="1666440775978" duration="18356000" />
+      <workItem from="1666440775978" duration="23063000" />
     </task>
     <servers />
   </component>

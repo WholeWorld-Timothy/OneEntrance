@@ -53,10 +53,11 @@ public class DemoTest {
         user.setUpdateTime(new Date());
         //user.setId(1549220056852897794L);
 
-        HintManager.getInstance().addDatabaseShardingValue("user",1);
+        HintManager hintManager = HintManager.getInstance();
 
-        //如果与addDatabaseShardingValue同时打开会报错
-        //HintManager.getInstance().setDatabaseShardingValue(3);
+        hintManager.addDatabaseShardingValue("ds-0",1);
+
+        hintManager.setDatabaseShardingValue(2);
 
         LOGGER.error(HintManager.getDatabaseShardingValues());
         //userMapper.insert(user);
